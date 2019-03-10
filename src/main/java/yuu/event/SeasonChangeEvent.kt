@@ -9,12 +9,3 @@ class SeasonChangeEvent : Event() {
         return handlerList
     }
 }
-
-enum class Seasons {
-    SPRING,
-    SUMMER,
-    FALL,
-    WINTER,
-
-    ;
-}
