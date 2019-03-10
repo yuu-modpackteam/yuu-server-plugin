@@ -19,30 +19,26 @@ class CustomConfig
  * @param fileName
  * 読み込みファイル名
  */
-
-/**
- * config.ymlを設定として読み書きするカスタムコンフィグクラスをインスタンス化します。
- *
- * @param plugin
- * ロード対象のプラグイン
- */
-@JvmOverloads constructor(private val plugin: Plugin, private val fileName: String = "config.yml") {
-
+@JvmOverloads constructor(private val plugin: Plugin, private val file: String = "config.yml") {
 
     private var config: FileConfiguration? = null
-    private val configFile: File = File(plugin.dataFolder, fileName)
+    private val configFile: File
+
+    init {
+        configFile = File(plugin.dataFolder, file)
+    }
 
     /**
      * デフォルト設定を保存します。
      */
     fun saveDefaultConfig() {
         if (!configFile.exists()) {
-            plugin.saveResource(fileName, false)
+            plugin.saveResource(file, false)
         }
     }
 
     /**
-     * 読み込んだ [org.bukkit.configuration.file.FileConfiguration]を提供します。
+     * 読み込んだFileConfiguretionを提供します。
      *
      * @return 読み込んだ設定
      */
@@ -74,9 +70,14 @@ class CustomConfig
     fun reloadConfig() {
         config = YamlConfiguration.loadConfiguration(configFile)
 
-        val defConfigStream = plugin.getResource(fileName) ?: return
+        val defConfigStream = plugin.getResource(file) ?: return
 
         config!!.defaults = YamlConfiguration.loadConfiguration(InputStreamReader(defConfigStream, StandardCharsets.UTF_8))
     }
 }
-
+/**
+ * config.ymlを設定として読み書きするカスタムコンフィグクラスをインスタンス化します。
+ *
+ * @param plugin
+ * ロード対象のプラグイン
+ */

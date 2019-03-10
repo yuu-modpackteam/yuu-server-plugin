@@ -1,6 +1,8 @@
 package yuu
 
+import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
+import org.bukkit.command.CommandSender
 import org.bukkit.command.PluginCommand
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -11,7 +13,6 @@ class Main : JavaPlugin() {
     init {
         config = CustomConfig(this)
         season = CustomConfig(this, "season.yml")
-        instance = this
     }
 
     override fun onEnable() {
@@ -19,7 +20,7 @@ class Main : JavaPlugin() {
         season = CustomConfig(this, "season.yml")
         config.saveDefaultConfig()
         season.saveDefaultConfig()
-        setCommandExecutor("season", SeasonCommand)
+        getCommand("season").executor = Season_command(this)
     }
 
     override fun onDisable() {
@@ -33,9 +34,5 @@ class Main : JavaPlugin() {
         } else {
             command.executor = executor
         }
-    }
-
-    companion object {
-        lateinit var instance: Main
     }
 }
