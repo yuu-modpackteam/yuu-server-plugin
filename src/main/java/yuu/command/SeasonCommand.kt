@@ -1,9 +1,10 @@
-package yuu
+package yuu.command
 
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
-import sun.plugin2.main.server.Plugin
+import yuu.CustomConfig
+import yuu.Main
 
 object SeasonCommand : CommandExecutor {
     private val plugin: Main = Main.instance

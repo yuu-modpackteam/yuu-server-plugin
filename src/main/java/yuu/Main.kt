@@ -3,6 +3,7 @@ package yuu
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.PluginCommand
 import org.bukkit.plugin.java.JavaPlugin
+import yuu.command.SeasonCommand
 
 class Main : JavaPlugin() {
     internal var config: CustomConfig = CustomConfig(this)
