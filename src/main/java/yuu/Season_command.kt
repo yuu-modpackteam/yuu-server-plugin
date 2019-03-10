@@ -5,13 +5,11 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import sun.plugin2.main.server.Plugin
 
-class Season_command : CommandExecutor {
+class Season_command internal constructor(private val plugin: Main) : CommandExecutor {
 
-    internal var season: CustomConfig
-    private val plugin: Main? = null
+    private val season: CustomConfig = CustomConfig(plugin, "season.yml")
 
-    fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {
-        season = CustomConfig(plugin!!, "season.yml")
+    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {
 
 
         return false

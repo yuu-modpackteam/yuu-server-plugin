@@ -19,18 +19,21 @@ class CustomConfig
  * @param fileName
  * 読み込みファイル名
  */
-@JvmOverloads constructor(private val plugin: Plugin, private val fileName: String = "config.yml") {
-
+@JvmOverloads constructor(private val plugin: Plugin, private val file: String = "config.yml") {
 
     private var config: FileConfiguration? = null
-    private val configFile: File = File(plugin.dataFolder, fileName)
+    private val configFile: File
+
+    init {
+        configFile = File(plugin.dataFolder, file)
+    }
 
     /**
      * デフォルト設定を保存します。
      */
     fun saveDefaultConfig() {
         if (!configFile.exists()) {
-            plugin.saveResource(fileName, false)
+            plugin.saveResource(file, false)
         }
     }
 
@@ -67,7 +70,7 @@ class CustomConfig
     fun reloadConfig() {
         config = YamlConfiguration.loadConfiguration(configFile)
 
-        val defConfigStream = plugin.getResource(fileName) ?: return
+        val defConfigStream = plugin.getResource(file) ?: return
 
         config!!.defaults = YamlConfiguration.loadConfiguration(InputStreamReader(defConfigStream, StandardCharsets.UTF_8))
     }
