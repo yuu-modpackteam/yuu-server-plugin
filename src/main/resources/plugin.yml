@@ -1,0 +1,6 @@
+name: yuu-server
+version: ${project.version}
+main: yuu.Main
+commands:
+  season:
+    description: c
