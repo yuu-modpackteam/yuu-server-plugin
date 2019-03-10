@@ -19,6 +19,13 @@ class CustomConfig
  * @param fileName
  * 読み込みファイル名
  */
+
+/**
+ * config.ymlを設定として読み書きするカスタムコンフィグクラスをインスタンス化します。
+ *
+ * @param plugin
+ * ロード対象のプラグイン
+ */
 @JvmOverloads constructor(private val plugin: Plugin, private val fileName: String = "config.yml") {
 
 
@@ -35,7 +42,7 @@ class CustomConfig
     }
 
     /**
-     * 読み込んだFileConfiguretionを提供します。
+     * 読み込んだ [org.bukkit.configuration.file.FileConfiguration]を提供します。
      *
      * @return 読み込んだ設定
      */
@@ -72,9 +79,4 @@ class CustomConfig
         config!!.defaults = YamlConfiguration.loadConfiguration(InputStreamReader(defConfigStream, StandardCharsets.UTF_8))
     }
 }
-/**
- * config.ymlを設定として読み書きするカスタムコンフィグクラスをインスタンス化します。
- *
- * @param plugin
- * ロード対象のプラグイン
- */
+
