@@ -20,7 +20,7 @@ class Main : JavaPlugin() {
         season = CustomConfig(this, "season.yml")
         config.saveDefaultConfig()
         season.saveDefaultConfig()
-        getCommand("season").executor = Season_command()
+        getCommand("season").executor = Season_command(this)
     }
 
     override fun onDisable() {
