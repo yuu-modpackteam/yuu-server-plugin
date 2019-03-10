@@ -1,6 +1,6 @@
 package yuu
 
-enum class Seasons {
+enum class Season {
     SPRING,
     SUMMER,
     FALL,
